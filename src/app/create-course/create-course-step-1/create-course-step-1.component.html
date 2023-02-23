@@ -3,7 +3,14 @@
   <mat-form-field appearance="outline">
 
     <mat-label>Course title</mat-label>
-    <input matInput formControlName="title">
+    <input #title matInput formControlName="title">
+    <mat-hint align="end">
+      {{title.value.length}} / 60
+    </mat-hint>
+
+    <mat-error *ngIf="courseTitle.errors?.minlength">
+      A minimum length of 5 characters is required.
+    </mat-error>
 
   </mat-form-field>
 
