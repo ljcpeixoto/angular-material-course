@@ -48,7 +48,7 @@
     <input matInput formControlName="releasedAt" placeholder="Release date" [matDatepicker]="releasedDatePicker">
 
     <mat-datepicker-toggle matSuffix [for]="releasedDatePicker"></mat-datepicker-toggle>
-    <mat-datepicker #releasedDatePicker>
+    <mat-datepicker #releasedDatePicker [dateClass]="dateClass">
 
 
 
