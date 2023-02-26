@@ -24,9 +24,9 @@
 
   <mat-form-field appearance="outline">
 
-    <mat-label>Select Category</mat-label>
+    <mat-label>{{categoryCombobox.value ? 'Category': 'Select category'}}</mat-label>
 
-    <mat-select formControlName="category" placeholder="Select category">
+    <mat-select formControlName="category" #categoryCombobox>
 
       <mat-optgroup label="Beginners">
         <mat-option value="NEWTOPROGRAMMING">New to Programming</mat-option>
