@@ -51,11 +51,13 @@
     <mat-datepicker-toggle matSuffix [for]="releasedDatePicker"></mat-datepicker-toggle>
     <mat-datepicker #releasedDatePicker [dateClass]="dateClass">
 
-
-
     </mat-datepicker>
 
   </mat-form-field>
+
+  <mat-checkbox color="primary" formControlName="downloadsAllowed">
+    Downloads allowed ?
+  </mat-checkbox>
 
 </div>
 
