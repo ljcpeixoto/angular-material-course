@@ -46,6 +46,7 @@ import {TreeDemoComponent} from './tree-demo/tree-demo.component';
 import {MatTreeModule} from '@angular/material/tree';
 import {VirtualScrollingComponent} from './virtual-scrolling/virtual-scrolling.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import { MonthPickerDirective } from './monthPicker/month-picker.directive';
 
 @NgModule({
     declarations: [
@@ -60,7 +61,8 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
         CreateCourseStep2Component,
         DragDropComponent,
         TreeDemoComponent,
-        VirtualScrollingComponent
+        VirtualScrollingComponent,
+      MonthPickerDirective
     ],
     imports: [
         BrowserModule,
