@@ -55,6 +55,18 @@
 
   </mat-form-field>
 
+  <mat-form-field appearance="outline">
+    <mat-label>Normal Date</mat-label>
+
+    <input matInput formControlName="normalDate" placeholder="Normal date" [matDatepicker]="normalDatePicker">
+
+    <mat-datepicker-toggle matSuffix [for]="normalDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #normalDatePicker [dateClass]="dateClass">
+
+    </mat-datepicker>
+
+  </mat-form-field>
+
   <mat-checkbox color="primary" formControlName="downloadsAllowed">
     Downloads allowed ?
   </mat-checkbox>

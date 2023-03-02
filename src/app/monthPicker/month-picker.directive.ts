@@ -1,24 +1,34 @@
-import { Directive, OnInit } from '@angular/core';
-import { MatDatepicker } from '@angular/material/datepicker';
-import { tap } from 'rxjs/operators';
+import {Directive, OnDestroy, OnInit} from '@angular/core';
+import {MatDatepicker} from '@angular/material/datepicker';
+import {tap} from 'rxjs/operators';
+import * as moment from "moment";
+import {Subscription} from "rxjs";
 
 @Directive(
   {
-    selector: '[monthPicker]'
+    selector: 'mat-datepicker[monthPicker]',
   }
 )
-export class MonthPickerDirective implements OnInit {
+export class MonthPickerDirective implements OnInit, OnDestroy {
+  private sub: Subscription;
 
-  constructor(private host: MatDatepicker<any>) {
+  constructor(private datepicker: MatDatepicker<any>) {
   }
   ngOnInit(): void {
-    this.host.startView = 'year';
-    this.host.monthSelected.pipe(tap(data => {
+    this.datepicker.startView = 'year';
+    this.sub = this.datepicker.monthSelected.pipe(tap(data => {
       console.log('Data', data);
-      this.host.select(data);
-      this.host.close();
+      const dataFimMes = moment(data).endOf('month').startOf('day').toDate();
+      this.datepicker.select(dataFimMes);
+      this.datepicker.close();
     })).subscribe();
     console.log('monthPicker OnInit');
+  }
+
+  ngOnDestroy(): void {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 
 
