@@ -9,9 +9,9 @@ export const MONTH_DATE_FORMATS = {
   },
   display: {
     dateInput: 'YYYY-MM',
-    monthYearLabel: 'MMM YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY',
+    monthYearLabel: 'YYYY-MM',
+    dateA11yLabel: 'YYYY-MM',
+    monthYearA11yLabel: 'YYYY-MM',
   }
 };
 
@@ -21,8 +21,10 @@ export class MonthDateAdapter extends NativeDateAdapter {
   constructor(matDateLocale: string, platform: Platform) {
     super(matDateLocale, platform);
     moment.locale('pt-br');
+    console.log('MonthDateAdapter initialized');
   }
   format(date: Date, displayFormat: any): string {
+    console.log('MonthDateAdapter format', displayFormat);
     if (displayFormat === 'YYYY-MM') {
       return moment(date).format('YYYY-MM')
     }
@@ -30,6 +32,7 @@ export class MonthDateAdapter extends NativeDateAdapter {
   }
 
   parse(value: any, parseFormat?: any): Date | null {
+    console.log('MonthDateAdapter parse');
     return moment(value, 'YYYY-MM').toDate();
   }
 
