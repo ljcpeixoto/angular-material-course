@@ -43,13 +43,14 @@
 
   </mat-form-field>
 
+  {{form.get('releasedAt').value}}
   <mat-form-field appearance="outline" monthPicker>
     <mat-label>Release Date</mat-label>
 
-    <input monthPicker matInput formControlName="releasedAt" placeholder="Release date" [matDatepicker]="releasedDatePicker">
+    <input matInput formControlName="releasedAt" placeholder="Release date" [matDatepicker]="releasedDatePicker">
 
     <mat-datepicker-toggle matSuffix [for]="releasedDatePicker"></mat-datepicker-toggle>
-    <mat-datepicker  monthPicker #releasedDatePicker [dateClass]="dateClass">
+    <mat-datepicker #releasedDatePicker [dateClass]="dateClass">
 
     </mat-datepicker>
 

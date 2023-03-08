@@ -1,15 +1,15 @@
-import {Directive, OnDestroy, OnInit} from '@angular/core';
-import {MatDatepicker} from '@angular/material/datepicker';
-import {tap} from 'rxjs/operators';
-import * as moment from "moment";
-import {Subscription} from "rxjs";
+import { AfterViewInit, ContentChild, Directive, OnDestroy } from '@angular/core';
+import { MatDatepicker } from '@angular/material/datepicker';
+import { tap } from 'rxjs/operators';
+import * as moment from 'moment';
+import { Subscription } from 'rxjs';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MONTH_DATE_FORMATS, MonthDateAdapter } from './month-date-adapter';
 import { Platform } from '@angular/cdk/platform';
 
 @Directive(
   {
-    selector: 'mat-datepicker[monthPicker]',
+    selector: '[monthPicker]',
     providers:[
       {
         provide: DateAdapter,
@@ -23,21 +23,21 @@ import { Platform } from '@angular/cdk/platform';
     ],
   }
 )
-export class MonthPickerDirective implements OnInit, OnDestroy {
+export class MonthPickerDirective implements OnDestroy, AfterViewInit {
   private sub: Subscription;
+  @ContentChild(MatDatepicker) private datepicker: MatDatepicker<any>;
+  constructor() {}
 
-  constructor(private datepicker: MatDatepicker<any>) {
-  }
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+
     if (this.datepicker) {
       this.datepicker.startView = 'year';
       this.sub = this.datepicker.monthSelected.pipe(tap(data => {
-        console.log('Data', data);
+        this.datepicker.close();
         const dataFimMes = moment(data).endOf('month').startOf('day').toDate();
         this.datepicker.select(dataFimMes);
-        this.datepicker.close();
       })).subscribe();
-      console.log('monthPicker OnInit');
+      console.log('monthPicker configured');
     }
   }
 
@@ -46,6 +46,7 @@ export class MonthPickerDirective implements OnInit, OnDestroy {
       this.sub.unsubscribe();
     }
   }
+
 
 
 }

@@ -1,26 +1,12 @@
-import {Component} from '@angular/core';
-import {UntypedFormBuilder, Validators} from '@angular/forms';
+import { Component } from '@angular/core';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import { MONTH_DATE_FORMATS, MonthDateAdapter } from '../../monthPicker/month-date-adapter';
-import { Platform } from '@angular/cdk/platform';
 
 
 @Component({
   selector: "create-course-step-1",
   templateUrl:"create-course-step-1.component.html",
   styleUrls: ["create-course-step-1.component.scss"],
-  providers:[
-    {
-      provide: DateAdapter,
-      useClass: MonthDateAdapter,
-      deps: [MAT_DATE_LOCALE, Platform]
-    },
-    // {
-    //   provide: MAT_DATE_FORMATS,
-    //   useValue: MONTH_DATE_FORMATS
-    // }
-  ],
 })
 export class CreateCourseStep1Component {
 
