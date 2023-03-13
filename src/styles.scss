@@ -6,3 +6,7 @@
 .highlight-date::before {
   background: red;
 }
+
+.mat-month-view-hidden mat-month-view {
+  display: none;
+ }

@@ -32,6 +32,7 @@ export class MonthPickerDirective implements OnDestroy, AfterViewInit {
 
     if (this.datepicker) {
       this.datepicker.startView = 'year';
+      this.datepicker.panelClass = 'mat-month-view-hidden';
       this.sub = this.datepicker.monthSelected.pipe(tap(data => {
         this.datepicker.close();
         const dataFimMes = moment(data).endOf('month').startOf('day').toDate();
